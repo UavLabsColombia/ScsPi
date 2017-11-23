@@ -1,0 +1,15 @@
+ÀÄmain
+   ÃÄMAIN  0/284  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=4
+   ³  ÃÄdefine_puertos  0/32  Ram=0
+   ³  ÃÄ@delay_ms1  0/38  Ram=1
+   ³  ÃÄ@ITOF  0/56  Ram=2
+   ³  ÃÄ@MULFF  0/242  Ram=11
+   ³  ÃÄ@FLT  0/120  Ram=10
+   ³  ÀÄ@PRINTF_L32D_9600_31766_31767FPFPF  0/386  Ram=13
+   ³     ÃÄ@MULFF  0/242  Ram=11
+   ³     ÃÄ@FTOSD  0/64  Ram=5
+   ³     ÃÄ@DIV3232  0/142  Ram=13
+   ³     ÀÄ@DIV3232  0/142  Ram=13
+   ÀÄrb_isr  0/24  Ram=0
+      ÀÄ@delay_ms1  0/38  Ram=1

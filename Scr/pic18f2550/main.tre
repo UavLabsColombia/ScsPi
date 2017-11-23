@@ -1,6 +1,6 @@
 ÀÄmain
-   ÃÄMAIN  0/284  Ram=0
-   ³  ÃÄ@cinit1  (Inline)  Ram=4
+   ÃÄMAIN  0/292  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄdefine_puertos  0/32  Ram=0
    ³  ÃÄ@delay_ms1  0/38  Ram=1
    ³  ÃÄ@ITOF  0/56  Ram=2
@@ -11,5 +11,6 @@
    ³     ÃÄ@FTOSD  0/64  Ram=5
    ³     ÃÄ@DIV3232  0/142  Ram=13
    ³     ÀÄ@DIV3232  0/142  Ram=13
-   ÀÄrb_isr  0/24  Ram=0
+   ÀÄrb_isr  0/22  Ram=0
+      ÃÄ@GETCH_BIU_1  0/24  Ram=0
       ÀÄ@delay_ms1  0/38  Ram=1

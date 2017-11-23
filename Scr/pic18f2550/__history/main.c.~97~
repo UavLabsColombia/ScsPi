@@ -82,7 +82,7 @@ void main() {
     // 5ms * 200 = 1s
     if(tempo == 200){
       tempo = 0;
-      //printf("%c.1111", dato_recibido);
+      printf("%c.1111", dato_recibido);
       printf("%1.4f", ValorADC);
       output_toggle(PIN_B1);
     }

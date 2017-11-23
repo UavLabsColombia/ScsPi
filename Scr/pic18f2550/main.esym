@@ -1,7 +1,7 @@
-D G "__PCH__" 0 0 ""5.015""
-D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""23-nov.-17""
-D G "__TIME__" 0 0 ""11:45:28"" "Convertidor de Analogo a Digital"
+D G "__PCH__" 0 93 ""5.015""
+D G "__DEVICE__" 0 93 "2550"
+D G "__DATE__" 0 93 ""23-nov.-17""
+D G "__TIME__" 0 93 ""16:24:46"" "Convertidor de Analogo a Digital"
 c L "set_tris_a" 1 1 6 "FUNCTION"
 v L "value" 1 45 "int8" `54 
 f B "set_tris_a" 1 45 "void(int8 value)" `53 
@@ -864,20 +864,21 @@ d G "INT_EEPROM" 1 770 "0x00A010"
 d G "INT_OSCF" 1 771 "0x00A080"
 d G "INT_USB" 1 772 "0x00A020"
 C L "jump_to_irs" 0 5 3 "FUNCTION"
-V G "resolucion" 0 15 "float" `637 
-V G "dato_recibido" 0 16 "int8" `638 
+V G "resolucion" 0 15 "float" `639 
+V G "dato_recibido" 0 16 "int8" `640 
 C L "jump_to_irs" 0 5 1 "FUNCTION"
-F G "define_puertos" 0 19 "void()" `640  "Define el puerto b como salida"
+F G "define_puertos" 0 19 "void()" `641  "Define el puerto b como salida"
 C L "define_puertos" 0 5 1 "FUNCTION"
 C L "define_puertos" 0 5 1 "FUNCTION"
 C L "define_puertos" 0 5 1 "FUNCTION"
 C L "rb_isr" 0 5 1 "FUNCTION"
-F G "rb_isr" 0 36 "void()" `641 
-F G "MAIN" 0 46 "void()" `642  "habilita las interrupciones"
+F G "rb_isr" 0 36 "void()" `642 
+C L "rb_isr" 0 5 1 "FUNCTION"
+F G "MAIN" 0 47 "void()" `643  "habilita las interrupciones"
 C L "MAIN" 0 5 1 "FUNCTION"
-V L "Valor" 0 54 "int16" `645 
-V L "ValorADC" 0 55 "float" `646 
-V L "tempo" 0 58 "int16" `647 
+V L "Valor" 0 55 "int16" `646 
+V L "ValorADC" 0 56 "float" `647 
+V L "tempo" 0 59 "int16" `648 
 C L "MAIN" 0 5 1 "FUNCTION"
 C L "MAIN" 0 5 1 "FUNCTION"
 C L "MAIN" 0 5 1 "FUNCTION"

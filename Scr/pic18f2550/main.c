@@ -17,11 +17,14 @@ char dato_recibido = '0';
 
 // Se define el puerto ADC a utilizar y sus pines.
 void define_puertos() {
-  // Define el puerto b como salida
-  set_tris_b(0x00);
+ 
+  // Define el pin b7 como entrada y el resto del puerto como salidas
+  //bin: 1000 0000
+  set_tris_b(0x80);
   
   // define la entrada 0 del puerto a como entrada
-  set_tris_a(0b00000001);
+  //bin: 0000 0001
+  set_tris_a(0x01);
 
   // Define como entradas analoga el puerto AN0
   SETUP_ADC_PORTS(AN0);
@@ -64,6 +67,8 @@ void main() {
     // output_toggle(PIN_B1);
     ValorADC = resolucion * (float)Valor;
 
+
+//********  borrar start
     if (ValorADC > 1.0f) {
       output_high(PIN_B1);
       //delay_ms(500);
@@ -71,12 +76,23 @@ void main() {
       output_low(PIN_B1);
       //delay_ms(500);
     }
+//********  borrar end
     
-    if(dato_recibido =='1'){
+
+    if(dato_recibido == '1'){
+      //start
       output_high(PIN_B2);
-    }else{
-      dato_recibido = '0';
+    }else if(dato_recibido == '0'){
+      //stopt
       output_low(PIN_B2);
+    }else if(dato_recibido == '2'){
+     //reset
+     //codigo para reset 
+     
+    }
+    
+    if(input(PIN_B7)){
+      printf("777777");
     }
 
     // 5ms * 200 = 1s
@@ -87,5 +103,6 @@ void main() {
       output_toggle(PIN_B1);
     }
     tempo ++;
+    
   }
 }

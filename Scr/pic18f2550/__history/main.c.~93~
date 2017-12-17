@@ -5,7 +5,7 @@
 // Numero de bits a utilizar sobre el convertidor analogo
 #device adc = 10
 #use delay(internal = 8000000)
-#use rs232(baud = 9600, bits = 8, parity = N, xmit = PIN_C6, RCV = PIN_C7, stop=1, ERRORS)
+#use rs232(baud = 9600, bits = 8, parity = N, xmit = PIN_C6, RCV = PIN_C7, stop=1)
 
 #use fast_io(b)
 #use fast_io(a)
@@ -13,18 +13,15 @@
 // Variables Globales
 // calculo de la resulucion en la salida
 float resolucion = (float)5 / (float)1023;
-char dato_recibido = '0';
+char dato_recibido = "";
 
 // Se define el puerto ADC a utilizar y sus pines.
 void define_puertos() {
- 
-  // Define el pin b7 como entrada y el resto del puerto como salidas
-  //bin: 1000 0000
-  set_tris_b(0x80);
+  // Define el puerto b como salida
+  set_tris_b(0x00);
   
   // define la entrada 0 del puerto a como entrada
-  //bin: 0000 0001
-  set_tris_a(0x01);
+  set_tris_a(0b00000001);
 
   // Define como entradas analoga el puerto AN0
   SETUP_ADC_PORTS(AN0);
@@ -67,8 +64,6 @@ void main() {
     // output_toggle(PIN_B1);
     ValorADC = resolucion * (float)Valor;
 
-
-//********  borrar start
     if (ValorADC > 1.0f) {
       output_high(PIN_B1);
       //delay_ms(500);
@@ -76,33 +71,20 @@ void main() {
       output_low(PIN_B1);
       //delay_ms(500);
     }
-//********  borrar end
     
-
-    if(dato_recibido == '1'){
-      //start
+    if(dato_recibido =='1'){
       output_high(PIN_B2);
-    }else if(dato_recibido == '0'){
-      //stopt
-      output_low(PIN_B2);
-    }else if(dato_recibido == '2'){
-     //reset
-     //codigo para reset 
-     
-    }
-    
-    if(input(PIN_B7)){
-      printf("777777");
+    }else if (dato_recibido == '0'){
+       output_low(PIN_B2);
     }
 
     // 5ms * 200 = 1s
     if(tempo == 200){
       tempo = 0;
-      //printf("%c.1111", dato_recibido);
+      printf("ultimo dato recibido %c :" dato_recibido);
       printf("%1.4f", ValorADC);
       output_toggle(PIN_B1);
     }
     tempo ++;
-    
   }
 }

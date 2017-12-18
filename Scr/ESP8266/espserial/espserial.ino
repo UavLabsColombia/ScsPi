@@ -68,13 +68,13 @@ void setup_wifi() {
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-  Serial.print("Message arrived [");
-  Serial.print(topic);
-  Serial.print("] ");
+  //Serial.print("Message arrived [");
+  //Serial.print(topic);
+  //Serial.print("] ");
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
   }
-  Serial.println();
+  //Serial.println();
 
   // Switch on the LED if an 1 was received as first character
   if ((char)payload[0] == '1') {
@@ -116,15 +116,16 @@ void loop() {
   client.loop();
 
   long now = millis();
-  if (now - lastMsg > 1000) {
+  if (now - lastMsg > 500) {
     lastMsg = now;
     ++value;
     char myArray[5];
     Serial.readBytes(myArray,6);
-    snprintf (msg, 75, "Hello", value);
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    Serial.print("Mi array " + (char)myArray[0]);
+    //snprintf (msg, 75, "Hello", value);
+    //Serial.print("Publish message: ");
+    //Serial.println(msg);
+    //Serial.print("Mi array " + (char)myArray[0]);
     client.publish("outTopic", myArray);
   }
+// no dejar linea en blanco al final del codigo 
 }

@@ -41,7 +41,6 @@ void rb_isr()
    {
       dato_recibido = getc();
       delay_ms(4);
-      //printf("ultimo dato recibido %c \n" getc());
    }
 }
 
@@ -59,13 +58,13 @@ void main() {
   float ValorADC = 0;
   SET_ADC_CHANNEL(0);
 
-   int16 tempo = 0;
+   int16 tiempo = 0;
   while (true) {
     delay_ms(5);
     // Lee el puerto Analogo
     Valor = READ_ADC();
     // output_toggle(PIN_B1);
-    ValorADC = resolucion * (float)Valor;
+    ValorADC = resolucion * (float) Valor;
 
 
 //********  borrar start
@@ -91,18 +90,25 @@ void main() {
      
     }
     
-    if(input(PIN_B7)){
-      printf("777777");
+    // 5ms * 200 = 1s
+    // este condicional entra cada 1 segundo
+    if(tiempo == 200){
+      // reset el tiempo
+      tiempo = 0;
+      //envia el dato medido
+      printf("%1.4f", ValorADC);
+      //enciende el led
+      output_toggle(PIN_B1);
+
+      // se tiene en cuenta que el analogo no supera los 5V entonces nos quedan libres 6,7,8,9 para enviar por el mismo topic 
+      // verifica si se preciono el boton de reset
+      if(input(PIN_B7)){
+
+     	printf("7.0000");
+      }
+
     }
 
-    // 5ms * 200 = 1s
-    if(tempo == 200){
-      tempo = 0;
-      //printf("%c.1111", dato_recibido);
-      printf("%1.4f", ValorADC);
-      output_toggle(PIN_B1);
-    }
-    tempo ++;
-    
+    tiempo ++;
   }
 }

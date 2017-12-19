@@ -1,7 +1,7 @@
-D G "__PCH__" 0 0 ""5.015""
-D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""18-dic.-17""
-D G "__TIME__" 0 0 ""15:03:35"" "Convertidor de Analogo a Digital"
+D G "__PCH__" 0 194 ""5.015""
+D G "__DEVICE__" 0 194 "2550"
+D G "__DATE__" 0 194 ""18-dic.-17""
+D G "__TIME__" 0 194 ""23:14:00"" "Convertidor de Analogo a Digital"
 c L "set_tris_a" 1 1 6 "FUNCTION"
 v L "value" 1 45 "int8" `54 
 f B "set_tris_a" 1 45 "void(int8 value)" `53 
@@ -863,34 +863,38 @@ d G "INT_COMP" 1 769 "0x00A040"
 d G "INT_EEPROM" 1 770 "0x00A010"
 d G "INT_OSCF" 1 771 "0x00A080"
 d G "INT_USB" 1 772 "0x00A020"
-C L "jump_to_irs" 0 5 3 "FUNCTION"
-V G "resolucion" 0 15 "float" `639 
-V G "dato_recibido" 0 16 "int8" `640 
 C L "jump_to_irs" 0 5 1 "FUNCTION"
-F G "define_puertos" 0 19 "void()" `641  "Define el pin b7 como entrada y el resto del puerto como salidas"
-C L "define_puertos" 0 5 1 "FUNCTION"
-C L "define_puertos" 0 5 2 "FUNCTION"
-C L "define_puertos" 0 5 1 "FUNCTION"
-C L "define_puertos" 0 5 1 "FUNCTION"
-C L "rb_isr" 0 5 1 "FUNCTION"
-F G "rb_isr" 0 39 "void()" `642 
-C L "rb_isr" 0 5 1 "FUNCTION"
-F G "MAIN" 0 50 "void()" `643  "habilita las interrupciones"
-C L "MAIN" 0 5 1 "FUNCTION"
-V L "Valor" 0 58 "int16" `646 
-V L "ValorADC" 0 59 "float" `647 
-V L "tempo" 0 62 "int16" `648 
-C L "MAIN" 0 5 1 "FUNCTION"
-C L "MAIN" 0 5 1 "FUNCTION"
-C L "MAIN" 0 71 1 "*"
-C L "MAIN" 0 71 1 "FUNCTION"
-C L "MAIN" 0 71 1 "FUNCTION"
-C L "MAIN" 0 79 1 "*"
-C L "MAIN" 0 79 1 "FUNCTION"
-C L "MAIN" 0 79 1 "FUNCTION"
-C L "MAIN" 0 79 2 "FUNCTION"
-C L "MAIN" 0 79 1 "FUNCTION"
-C L "MAIN" 0 79 1 "FUNCTION"
+C L "jump_to_irs" 0 14 2 "*"
+V G "resolucion" 0 17 "float" `639 
+V G "dato_recibido" 0 18 "int8" `640 
+C L "jump_to_irs" 0 14 1 "FUNCTION"
+V G "i" 0 20 "int8" `641  "Se define el puerto ADC a utilizar y sus pines."
+F G "define_puertos" 0 23 "void()" `642  "Define el pin como entrada y el resto del puerto como salidas"
+C L "define_puertos" 0 14 1 "FUNCTION"
+C L "define_puertos" 0 14 2 "FUNCTION"
+C L "define_puertos" 0 14 1 "FUNCTION"
+C L "define_puertos" 0 14 1 "FUNCTION"
+C L "define_puertos" 0 14 1 "FUNCTION"
+C L "rb_isr" 0 14 1 "FUNCTION"
+F G "rb_isr" 0 48 "void()" `643 
+F G "leerADC" 0 55 "float()" `644 
+F G "MAIN" 0 60 "void()" `650 
+C L "MAIN" 0 14 1 "FUNCTION"
+C L "MAIN" 0 14 1 "FUNCTION"
+C L "MAIN" 0 14 1 "FUNCTION"
+C L "MAIN" 0 14 3 "FUNCTION"
+C L "MAIN" 0 14 1 "FUNCTION"
+C L "MAIN" 0 14 1 "FUNCTION"
+C L "MAIN" 0 14 1 "FUNCTION"
+C L "MAIN" 0 14 1 "FUNCTION"
+V L "promedio" 0 94 "float" `656 
+C L "MAIN" 0 14 1 "FUNCTION"
+C L "MAIN" 0 105 1 "*"
+C L "MAIN" 0 105 1 "FUNCTION"
+C L "MAIN" 0 105 1 "FUNCTION"
+C L "MAIN" 0 105 4 "FUNCTION"
+C L "MAIN" 0 105 1 "FUNCTION"
+C L "MAIN" 0 105 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

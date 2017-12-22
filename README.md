@@ -26,7 +26,7 @@ Mosquitto:
 Servidor de aplicacion intermediario para los mensajes bajo el protocolo MQTT https://mosquitto.org/, Documentacion https://mosquitto.org/documentation/
 
 MQTT:
-Protocolo de comunicacion Maquina a Maquina (M2M) http://mqtt.org/, Dodumentacion http://mqtt.org/documentation
+Protocolo de comunicacion Maquina a Maquina (M2M) http://mqtt.org/, Dodumentacion http://mqtt.org/documentation, Ejemplo de uso https://github.com/knolleary/pubsubclient/tree/master/examples/mqtt_esp8266
 
 Arduino: IDE de programacion para Chips basados en la arquitectura Atmel AVR https://www.arduino.cc/, Documentacion https://www.arduino.cc/en/Guide/HomePage
 

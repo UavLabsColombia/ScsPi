@@ -14,7 +14,7 @@
 
 // calculo de la resulucion en la salida
 float resolucion = (float) 5 / (float) 1023;
-char dato_recibido = '0';
+char dato_recibido = '';
 // se usa en los bucles
 int i;
 // se calcula el promedio del peso
@@ -106,9 +106,12 @@ void rb_isr() {
         dato_recibido = getc();
         delay_ms(4);
         if(dato_recibido == '1'){
-           parar_planta();
+            parar_planta();
         }
-        dato_recibido = '0';
+        if(dato_recibido == '2'){
+          
+        }
+        //dato_recibido = '0';
     }
 }
 

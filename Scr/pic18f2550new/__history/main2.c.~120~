@@ -20,22 +20,12 @@ int i;
 // se calcula el promedio del peso
 float promedio = 0.0f;
 
-boolean primera_etapa = false;
-boolean segunda_etapa = false;
-
-
 // Se define el puerto ADC a utilizar y sus pines.
 void define_puertos() {
 
-    /* Define el pin 7 y 0 como entrada y el resto del puerto como salidas
-    3 y 4 leds indicadores de caja
-    0  entrada finales de carrera
-    2 banda 1
-    bin: 1110 0001
-    */
-    
-    set_tris_b(0xE1);
-    output_low(PIN_B1);
+    // Define el pin 7 y 0 como entrada y el resto del puerto como salidas
+    //bin: 1000 0001
+    set_tris_b(0x81);
 
     // define la entrada 0 del puerto a como entrada
     //bin: 0000 0001
@@ -53,51 +43,14 @@ void define_puertos() {
     // Define el relog interno para el uso del ADC
     SETUP_ADC(ADC_CLOCK_INTERNAL);
 }
-void parar_planta(){
-       output_high(PIN_B1);
+//interrupcion de tiempo
+#int_TIMER0
+void Timer0_int()
+{
 
-       // *************  detiene lo que esta funcionando 
-      // if(primera_etapa){
-          // se detiene la banda 1
-           output_low(PIN_B2);
-      // }else{
-          // se detiene las bandas finales
-          output_high(PIN_A5);
-     //  }
-
-      while(!input(PIN_B5)){
-         delay_ms(100);
-      }
-
-         if(primera_etapa){
-          // se reanuda la primera banda
-           output_high(PIN_B2);
-       }else{
-          // se reanuda las bandas finales
-              if(input(PIN_B0)){
-                 // esta en las bandas
-            output_low(PIN_A5);
-            delay_ms(3500);
-            output_high(PIN_A5);
-              }
-       }
-
-         output_low(PIN_B1);
 }
 
-// ************************* interupciones ************************
-// iterupcion de cambio en el puerto b
-#int_rb
-void int_rb_pulsadores(){
-   //boton de rest
-   if(input(PIN_B7)){
-      printf("7.0000");
-   }
-   // stop 6
-   if(input(PIN_B6)){
-         parar_planta();
-   }
-}
+
 
 //interrupcion de llegada de datos
 #int_rda
@@ -105,10 +58,6 @@ void rb_isr() {
     if (kbhit()) {
         dato_recibido = getc();
         delay_ms(4);
-        if(dato_recibido == '1'){
-           parar_planta();
-        }
-        dato_recibido = '0';
     }
 }
 
@@ -177,6 +126,8 @@ void bajar_ascensor() {
 }
 
 void main() {
+
+
     //habilita las interrupciones por serial
     enable_interrupts(int_rda);
     //habilita las interrupciones puerto b
@@ -194,18 +145,13 @@ void main() {
     // se configura el canal del adc
     SET_ADC_CHANNEL(0);
 
+    //configuracion del pwm
+    //setup_timer_2(T2_DIV_BY_4 ,125 ,1);
+    //setup_ccp1(CCP_PWM);
+
     while (true) {
-
-       primera_etapa = true;
-
         // inicia la banda 1
         output_high(PIN_B2);
-        
-             
-       
-       // se apagan los led indicadores de caja
-        output_low(PIN_B3);
-        output_low(PIN_B4);
 
         // esta en este metodo hasta que pese algo
         while (true) {
@@ -221,25 +167,14 @@ void main() {
         // espera 3s mientras cuadra la caja
         delay_ms(3000);
 
-        // ******************* peso de la caja
-
         for (i = 0; i < 7; i++) {
             delay_ms(300);
             promedio += leerADC();
         }
         promedio /= 7;
 
-
         // se envia el peso por r232
         printf("%1.4f", promedio);
-
-        // enciende los led indicadores 
-        if (promedio >= 3.5) {
-            output_high(PIN_B3);
-        }else{
-            output_high(PIN_B4);
-        }
-        
 
         //**************** servo 1 (pasa a la otra banda) ***************
         delay_ms(500);
@@ -258,12 +193,6 @@ void main() {
             output_low(PIN_C2);
             delay_us(19500);
         }
-        // ***************  fin del servo 1 *****************++
-
-        // cambia los estados de las etapas
-        primera_etapa = false;
-        segunda_etapa = true;
-
 
         // corre las 3 bandas del rele
         output_low(PIN_A5);
@@ -320,7 +249,6 @@ void main() {
         output_high(PIN_A5);
 
         bajar_ascensor();
-
-        segunda_etapa = false;
+        
     }
 }

@@ -1,5 +1,6 @@
-ScsPi
-Sistema de Control Escalable Basado en Raspberry Pî
+#"ScsPi" Sistema de Control Escalable Basado en Raspberry Pi
+
+
 Al diseñar un sistema de control automático, nuestra mayor satisfacción es el saber que funciona de manera adecuada y sin percances sobre su ejecución, a raíz de mejorar la estabilidad en los funcionamientos de los sistemas de control automático, nace la necesidad de un constante monitoreo del sistema, este monitoreo consiste en darse cuenta si el proceso se está ejecutando de manera correcta, ya sea confirmando el estado del sistema personalmente o analizando su estatus por medio de un panel que permita su control ante algún evento, por esto vemos la necesidad de implementar un SCS “Scalable Control System o Sistema de Control Escalable” que permite amoldarse a cualquier entorno de control automático en producción y analizar en RT su funcionamiento. 
 
 Objetivo.

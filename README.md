@@ -22,6 +22,8 @@ Sistema Operativo Basado en Tecnologias GNU/Linux https://www.raspbian.org/, Doc
 Node-RED: 
 Herramienta de programacion basada en Flows, editor de flujos con tecnologias basadas en APIs para conectar dispositivos de Hardware del Internet de las Cosas "IoT" https://nodered.org/, Documentacion https://nodered.org/docs/
 
+Mosquitto:
+Servidor de aplicacion intermediario para los mensajes bajo el protocolo MQTT https://mosquitto.org/, Documentacion https://mosquitto.org/documentation/
 
 MQTT:
 Protocolo de comunicacion Maquina a Maquina (M2M) http://mqtt.org/, Dodumentacion http://mqtt.org/documentation

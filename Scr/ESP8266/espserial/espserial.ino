@@ -1,9 +1,9 @@
-/*
- Conexion de modulo Wi-Fi ESP8266 Con servidor del protocolo MQTT example
 
-Este codigo, es una modificacion al ejemplo de conexion con el servidor MQTT de los ejemplos de arduino 
-el cual utiliza la librerias ESP8266Wifi y PubSubclient
-fue modificado y adaptado para el control de nuestro proceso, se conecta a un servidor de MQTT el cual se encuentra en
+/*
+Conexion de modulo Wi-Fi ESP8266 Con servidor del protocolo MQTT example
+
+Este codigo, es una modificacion al ejemplo de conexion con el servidor MQTT  de arduino 
+el cual utiliza la librerias ESP8266Wifi y PubSubclient, fue modificado y adaptado para el control de nuestro proceso, se conecta a un servidor de MQTT el cual se encuentra en
 una red alcanzable via TCP/IP
 
 Funcionamiento: 

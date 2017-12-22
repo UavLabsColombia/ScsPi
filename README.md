@@ -16,8 +16,8 @@ Objetivos Generales.
 * Diseñar el Frontend o Panel de control
 * Publicar el SCS en la nube monitoreando el sistema. 
 
-Planta o Sistema a controlar:
-Elevador clasificador para paquetes
+Planta o Sistema a controlar: Elevador clasificador para paquetes
+
 El proceso se inicia con el transporte de uno de los paquetes a la báscula; una vez clasificado el paquete en la báscula, se encenderá una luz indicadora del tipo de paquete (luz 1 será paquete grande y luz 2 será paquete pequeño). A continuación, el paquete es transportado por la cinta 1 hasta el plano elevador. El cilindro C eleva los paquetes. Acto seguido los paquetes son clasificados; los paquetes pequeños son colocados en la cinta 2 por el cilindro A, y los paquetes grandes son colocados en la cinta 3 por el cilindro B. el cilindro elevador C se recupera sólo cuando los cilindros A y B llegan a la posición final. El sistema contará con botones locales de stop, start y reinicio; los cuales también aparecerán en la HMI, en donde se mostrará las fases del proceso y llevará la cuenta de los paquetes grandes y pequeños.
 
 

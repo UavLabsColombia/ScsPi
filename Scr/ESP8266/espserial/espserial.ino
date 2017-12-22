@@ -47,10 +47,12 @@ void setup() {
   client.setCallback(callback);
 }
 
+// FUncion que realiza la conexion a la red Wifi.
+//Imprime por el serial un . mientras intenta ralizar la conexion con la red Wifi
+// Una vez conectado imprime por serial los datos de la conexion realizada y la ip asignada. 
 void setup_wifi() {
 
   delay(10);
-  // We start by connecting to a WiFi network
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -68,41 +70,38 @@ void setup_wifi() {
   Serial.println(WiFi.localIP());
 }
 
+//Funcion que recoge el evento de llegada recogido por el servidor mqtt, lo almacena en buffer y lo imprime por serial
 void callback(char* topic, byte* payload, unsigned int length) {
-  //Serial.print("Message arrived [");
-  //Serial.print(topic);
-  //Serial.print("] ");
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
   }
 
-  // Switch on the LED if an 1 was received as first character
+  // Enciende el BUILTIN_LED si se recibe un 1 sobre el primer espacio del buffer de datos recibido
   if ((char)payload[0] == '1') {
-    digitalWrite(BUILTIN_LED, LOW);   // Turn the LED on (Note that LOW is the voltage level
-    // but actually the LED is on; this is because
-    // it is acive low on the ESP-01)
+    digitalWrite(BUILTIN_LED, LOW);   // Enciende el led con logica 0
+    // 
   } else {
-    digitalWrite(BUILTIN_LED, HIGH);  // Turn the LED off by making the voltage HIGH
+    digitalWrite(BUILTIN_LED, HIGH);  // Apaga el led con logica 1
   }
 
 }
 
 void reconnect() {
-  // Loop until we're reconnected
+  // Loop de reconexoin con el servidor MQTT
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
-    // Attempt to connect
+    // Intento de conexion
     if (client.connect("ESP8266Client")) {
       Serial.println("connected");
-      // Once connected, publish an announcement...
+      // Una vez conectado, realiza una publicacion
       client.publish("outTopic", "hello world");
-      // ... and resubscribe
+      // Se suscribe a un topic de entrada
       client.subscribe("inTopic");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
-      // Wait 5 seconds before retrying
+      // Espera 5 segundos antes de intentar reconectar de nuevo 
       delay(5000);
     }
   }
@@ -119,12 +118,9 @@ void loop() {
   if (now - lastMsg > 500) {
     lastMsg = now;
     ++value;
+    // Buffer que recoge los datos leidos por el puerto serial y lo publica sobre el topic de salida. 
     char myArray[5];
     Serial.readBytes(myArray,6);
-    //snprintf (msg, 75, "Hello", value);
-    //Serial.print("Publish message: ");
-    //Serial.println(msg);
-    //Serial.print("Mi array " + (char)myArray[0]);
     client.publish("outTopic", myArray);
   }
 // no dejar linea en blanco al final del codigo 

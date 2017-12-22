@@ -1,0 +1,27 @@
+Protocolo MQTT
+MQTT is a machine-to-machine (M2M)/"Internet of Things" connectivity protocol.
+http://mqtt.org/
+
+
+
+
+mosquitto Broker 
+https://mosquitto.org/
+
+## Comandos del servidor mosquitto
+para crear un topic sobre el server de manera local desde bash
+$mosquitto_sub -d -t <tipoc_a_crear>
+para escribir un mensaje sobre un topic
+mosquitto_pub -d -t <tocpic_en_servidor> -m "1.5"
+
+
+
+Cliente mqtt para publicar sobre el servidor 
+https://github.com/knolleary/pubsubclient
+
+Cliente para el esp8266
+https://github.com/knolleary/pubsubclient/blob/master/src/PubSubClient.h
+Ejemplo de uso
+https://github.com/knolleary/pubsubclient/tree/master/examples/mqtt_esp8266
+
+

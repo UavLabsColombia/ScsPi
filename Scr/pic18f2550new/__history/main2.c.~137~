@@ -14,7 +14,7 @@
 
 // calculo de la resulucion en la salida
 float resolucion = (float) 5 / (float) 1023;
-char dato_recibido = '0';
+char dato_recibido = '';
 // se usa en los bucles
 int i;
 // se calcula el promedio del peso
@@ -85,6 +85,39 @@ void parar_planta(){
          output_low(PIN_B1);
 }
 
+// paro de plata por hmi
+void parar_planta_hmi(){
+       output_high(PIN_B1);
+
+       // *************  detiene lo que esta funcionando 
+      // if(primera_etapa){
+          // se detiene la banda 1
+           output_low(PIN_B2);
+      // }else{
+          // se detiene las bandas finales
+          output_high(PIN_A5);
+     //  }
+
+      while(!dato_recibido == '0'){
+         delay_ms(100);
+      }
+
+         if(primera_etapa){
+          // se reanuda la primera banda
+           output_high(PIN_B2);
+       }else{
+          // se reanuda las bandas finales
+              if(input(PIN_B0)){
+                 // esta en las bandas
+            output_low(PIN_A5);
+            delay_ms(3500);
+            output_high(PIN_A5);
+              }
+       }
+
+         output_low(PIN_B1);
+}
+
 // ************************* interupciones ************************
 // iterupcion de cambio en el puerto b
 #int_rb
@@ -106,9 +139,9 @@ void rb_isr() {
         dato_recibido = getc();
         delay_ms(4);
         if(dato_recibido == '1'){
-           parar_planta();
+            parar_planta_hmi();
         }
-        dato_recibido = '0';
+        //dato_recibido = '0';
     }
 }
 

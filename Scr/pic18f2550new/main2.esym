@@ -1,7 +1,7 @@
-D G "__PCH__" 0 194 ""5.015""
-D G "__DEVICE__" 0 194 "2550"
-D G "__DATE__" 0 194 ""18-dic.-17""
-D G "__TIME__" 0 194 ""23:14:00"" "Convertidor de Analogo a Digital"
+D G "__PCH__" 0 328 ""5.015""
+D G "__DEVICE__" 0 328 "2550"
+D G "__DATE__" 0 328 ""20-dic.-17""
+D G "__TIME__" 0 328 ""17:16:05"" "Convertidor de Analogo a Digital"
 c L "set_tris_a" 1 1 6 "FUNCTION"
 v L "value" 1 45 "int8" `54 
 f B "set_tris_a" 1 45 "void(int8 value)" `53 
@@ -864,37 +864,60 @@ d G "INT_EEPROM" 1 770 "0x00A010"
 d G "INT_OSCF" 1 771 "0x00A080"
 d G "INT_USB" 1 772 "0x00A020"
 C L "jump_to_irs" 0 5 1 "FUNCTION"
-C L "jump_to_irs" 0 14 2 "*"
-V G "resolucion" 0 17 "float" `639 
-V G "dato_recibido" 0 18 "int8" `640 
-C L "jump_to_irs" 0 14 1 "FUNCTION"
-V G "i" 0 20 "int8" `641  "Se define el puerto ADC a utilizar y sus pines."
-F G "define_puertos" 0 23 "void()" `642  "Define el pin como entrada y el resto del puerto como salidas"
-C L "define_puertos" 0 14 1 "FUNCTION"
-C L "define_puertos" 0 14 2 "FUNCTION"
-C L "define_puertos" 0 14 1 "FUNCTION"
-C L "define_puertos" 0 14 1 "FUNCTION"
-C L "define_puertos" 0 14 1 "FUNCTION"
-C L "rb_isr" 0 14 1 "FUNCTION"
-F G "rb_isr" 0 48 "void()" `643 
-F G "leerADC" 0 55 "float()" `644 
-F G "MAIN" 0 60 "void()" `650 
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 3 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 14 1 "FUNCTION"
-V L "promedio" 0 94 "float" `656 
-C L "MAIN" 0 14 1 "FUNCTION"
-C L "MAIN" 0 105 1 "*"
-C L "MAIN" 0 105 1 "FUNCTION"
-C L "MAIN" 0 105 1 "FUNCTION"
-C L "MAIN" 0 105 4 "FUNCTION"
-C L "MAIN" 0 105 1 "FUNCTION"
-C L "MAIN" 0 105 1 "FUNCTION"
+C L "jump_to_irs" 0 13 2 "*"
+V G "resolucion" 0 16 "float" `639 
+V G "dato_recibido" 0 17 "int8" `640 
+C L "jump_to_irs" 0 13 1 "FUNCTION"
+V G "i" 0 19 "int8" `641  "se calcula el promedio del peso"
+V G "promedio" 0 21 "float" `642 
+V G "primera_etapa" 0 23 "int1" `643 
+V G "segunda_etapa" 0 24 "int1" `644 
+C L "jump_to_irs" 0 13 1 "FUNCTION"
+F G "define_puertos" 0 28 "void()" `645  "Define el pin 7 y 0 como entrada y el resto del puerto como salidas"
+C L "define_puertos" 0 13 4 "FUNCTION"
+C L "define_puertos" 0 13 2 "FUNCTION"
+C L "define_puertos" 0 13 1 "FUNCTION"
+C L "define_puertos" 0 13 1 "FUNCTION"
+C L "define_puertos" 0 13 1 "FUNCTION"
+F G "parar_planta" 0 56 "void()" `646 
+C L "parar_planta" 0 59 3 "*"
+C L "parar_planta" 0 59 2 "FUNCTION"
+C L "parar_planta" 0 59 1 "FUNCTION"
+C L "parar_planta" 0 59 1 "FUNCTION"
+C L "parar_planta" 0 59 1 "FUNCTION"
+C L "int_rb_pulsadores" 0 88 2 "*"
+F G "int_rb_pulsadores" 0 91 "void()" `647  "boton de rest"
+C L "int_rb_pulsadores" 0 88 1 "FUNCTION"
+C L "rb_isr" 0 88 1 "FUNCTION"
+F G "rb_isr" 0 104 "void()" `650 
+F G "leerADC" 0 115 "float()" `651 
+F G "subir_ascensor" 0 119 "void()" `657  "subir ascensor"
+C L "subir_ascensor" 0 88 1 "FUNCTION"
+C L "subir_ascensor" 0 88 1 "FUNCTION"
+C L "subir_ascensor" 0 88 1 "FUNCTION"
+F G "bajar_ascensor" 0 151 "void()" `661  "bajar ascensor"
+F G "MAIN" 0 179 "void()" `662  "habilita las interrupciones por serial"
+C L "MAIN" 0 88 1 "FUNCTION"
+C L "MAIN" 0 88 1 "FUNCTION"
+C L "MAIN" 0 88 1 "FUNCTION"
+C L "MAIN" 0 88 1 "FUNCTION"
+C L "MAIN" 0 88 1 "FUNCTION"
+C L "MAIN" 0 88 1 "FUNCTION"
+C L "MAIN" 0 88 1 "FUNCTION"
+C L "MAIN" 0 88 1 "FUNCTION"
+C L "MAIN" 0 88 1 "FUNCTION"
+C L "MAIN" 0 224 1 "*"
+C L "MAIN" 0 224 1 "FUNCTION"
+C L "MAIN" 0 224 1 "FUNCTION"
+C L "MAIN" 0 244 1 "*"
+C L "MAIN" 0 244 1 "FUNCTION"
+C L "MAIN" 0 261 2 "*"
+C L "MAIN" 0 261 1 "FUNCTION"
+C L "MAIN" 0 261 4 "FUNCTION"
+C L "MAIN" 0 261 1 "FUNCTION"
+C L "MAIN" 0 261 1 "FUNCTION"
+C L "MAIN" 0 261 1 "FUNCTION"
+C L "MAIN" 0 261 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

@@ -41,7 +41,7 @@ Pic C compiler: IDE utilizado para programar Chips de la arquitectura MicroChip
 http://www.ccsinfo.com/, Documentacion https://www.ccsinfo.com/downloads/ccs_c_manual.pdf
 
 
-Java Script: Lenguaje de Programacion Orientado a Objetos utilizado para programar sobre Node-Red https://www.javascript.com/Documentacion, Documentacion https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia
+Java Script: Lenguaje de Programacion Orientado a Objetos utilizado para programar sobre Node-Red https://www.javascript.com/ Documentacion https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia
 
 
 

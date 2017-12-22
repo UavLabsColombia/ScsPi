@@ -65,21 +65,21 @@ void parar_planta(){
           output_high(PIN_A5);
      //  }
 
-      while(!input(PIN_B5)){
-         delay_ms(100);
-      }
+		while(!input(PIN_B5)){
+			delay_ms(100);
+		}
 
          if(primera_etapa){
           // se reanuda la primera banda
            output_high(PIN_B2);
        }else{
           // se reanuda las bandas finales
-              if(input(PIN_B0)){
-                 // esta en las bandas
-            output_low(PIN_A5);
-            delay_ms(3500);
-            output_high(PIN_A5);
-              }
+       	    if(input(PIN_B0)){
+       	    	// esta en las bandas
+				output_low(PIN_A5);
+				delay_ms(3500);
+				output_high(PIN_A5);
+       	    }
        }
 
          output_low(PIN_B1);
@@ -95,7 +95,7 @@ void int_rb_pulsadores(){
    }
    // stop 6
    if(input(PIN_B6)){
-         parar_planta();
+   		parar_planta();
    }
 }
 
@@ -106,7 +106,7 @@ void rb_isr() {
         dato_recibido = getc();
         delay_ms(4);
         if(dato_recibido == '1'){
-           parar_planta();
+        	parar_planta();
         }
         dato_recibido = '0';
     }

@@ -53,37 +53,6 @@ void define_puertos() {
     // Define el relog interno para el uso del ADC
     SETUP_ADC(ADC_CLOCK_INTERNAL);
 }
-void parar_planta(){
-       output_high(PIN_B1);
-
-       // *************  detiene lo que esta funcionando 
-      // if(primera_etapa){
-          // se detiene la banda 1
-           output_low(PIN_B2);
-      // }else{
-          // se detiene las bandas finales
-          output_high(PIN_A5);
-     //  }
-
-      while(!input(PIN_B5)){
-         delay_ms(100);
-      }
-
-         if(primera_etapa){
-          // se reanuda la primera banda
-           output_high(PIN_B2);
-       }else{
-          // se reanuda las bandas finales
-              if(input(PIN_B0)){
-                 // esta en las bandas
-            output_low(PIN_A5);
-            delay_ms(3500);
-            output_high(PIN_A5);
-              }
-       }
-
-         output_low(PIN_B1);
-}
 
 // ************************* interupciones ************************
 // iterupcion de cambio en el puerto b
@@ -95,7 +64,32 @@ void int_rb_pulsadores(){
    }
    // stop 6
    if(input(PIN_B6)){
-         parar_planta();
+    	output_high(PIN_B1);
+
+    	if(primera_etapa){
+    		// se detiene la banda 1
+        	output_low(PIN_B2);
+    	}else{
+    		// se detiene las bandas finales
+    		output_high(PIN_A5);
+    	}
+
+      	while(!input(PIN_B5)){
+	   		delay_ms(100);
+	   		break;
+      	}
+
+      	if(primera_etapa){
+    		// se detiene la banda 1
+        	output_high(PIN_B2);
+    	}else{
+    		// se detiene las bandas finales
+    		output_low(PIN_A5);
+        	delay_ms(3500);
+        	output_high(PIN_A5);
+    	}
+
+   		output_low(PIN_B1);
    }
 }
 
@@ -105,10 +99,6 @@ void rb_isr() {
     if (kbhit()) {
         dato_recibido = getc();
         delay_ms(4);
-        if(dato_recibido == '1'){
-           parar_planta();
-        }
-        dato_recibido = '0';
     }
 }
 
@@ -177,6 +167,9 @@ void bajar_ascensor() {
 }
 
 void main() {
+
+
+
     //habilita las interrupciones por serial
     enable_interrupts(int_rda);
     //habilita las interrupciones puerto b
@@ -196,7 +189,7 @@ void main() {
 
     while (true) {
 
-       primera_etapa = true;
+    	primera_etapa = true;
 
         // inicia la banda 1
         output_high(PIN_B2);
@@ -260,7 +253,7 @@ void main() {
         }
         // ***************  fin del servo 1 *****************++
 
-        // cambia los estados de las etapas
+     	// cambia los estados de las etapas
         primera_etapa = false;
         segunda_etapa = true;
 

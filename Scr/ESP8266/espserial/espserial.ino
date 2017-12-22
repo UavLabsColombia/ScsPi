@@ -9,7 +9,7 @@ una red alcanzable via TCP/IP
 Funcionamiento: 
 - AL conectarse con el servidor MQTT, imprime el mensaje "Hola mundo" indicando que se ha conectado correctamente, esto lo realiza con el topic
 "outopic", este hola mundo es utilizado sobre Node-Red para detectar que la planta se ha conectado con el servidor de aplicacion
-- Se suscribe a un topic "inTopic" por el cual recibe los eventos de desde el mismo servidor MQTT
+- Se suscribe a un topic "inTopic" por el cual recibe los eventos de desde el mismo servidor MQTT y son enviados por serial al pic18f2550
 - Si el primer caracter del topic de entrada es un 1, enciende el led integrado sobre el mismo ESP8266
 - Este se reconecta al servidor si en algun momento falla la comunicacion
 

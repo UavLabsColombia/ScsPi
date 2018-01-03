@@ -83,14 +83,8 @@ void define_puertos() {
     SET_ADC_CHANNEL(0);
 }
 
-void correr_bandas_finales(){
-    // corre las 3 bandas del rele por 3.5 seg
-    output_low(PIN_A5);
-    delay_ms(3500);
-    output_high(PIN_A5);
-}
 
-void parar_planta(){
+    void parar_planta(){
     // se enciende el led indicador de paro
     output_high(PIN_B1);
     
@@ -155,11 +149,18 @@ float leerADC() {
     return resolucion * (float) (READ_ADC());
 }
 
+void correr_bandas_finales(){
+    // corre las 3 bandas del rele por 3.5 seg
+    output_low(PIN_A5);
+    delay_ms(3500);
+    output_high(PIN_A5);
+}
+
 void subir_ascensor() {
     //ENABLE RA3,  datos: A1, A2
     output_high(PIN_A1);
     output_low(PIN_A2);
-    
+
     //inicio de la subida con fuerza
     for (i = 0; i < 40; i++) {
         output_high(PIN_A3);
@@ -167,15 +168,15 @@ void subir_ascensor() {
         output_low(PIN_A3);
         delay_ms(11);
     }
-    
+
     if (promedio >= 3.5) {
         //cajas pesadas
         while (!input(PIN_B0)) {
-                output_high(PIN_A3);
-                delay_ms(8);
-                output_low(PIN_A3);
-                delay_ms(12);
-            }
+            output_high(PIN_A3);
+            delay_ms(8);
+            output_low(PIN_A3);
+            delay_ms(12);
+        }
     } else {
         //cajas livianas
         while (!input(PIN_B0)) {
@@ -192,21 +193,21 @@ void bajar_ascensor() {
     
     output_low(PIN_A1);
     output_high(PIN_A2);
-    
+
     for (i = 0; i < 40; i++) {
         output_high(PIN_A3);
         delay_ms(12);
         output_low(PIN_A3);
         delay_ms(8);
     }
-    
+
     for (i = 0; i < 80; i++) {
         output_high(PIN_A3);
         delay_ms(5);
         output_low(PIN_A3);
         delay_ms(15);
     }
-    
+
     while (!input(PIN_B0)) {
         output_high(PIN_A3);
         delay_ms(3);
@@ -300,6 +301,7 @@ void main() {
         }
     
         correr_bandas_finales();
+    
         bajar_ascensor();
     }
 }

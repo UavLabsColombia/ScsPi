@@ -42,124 +42,106 @@ float promedio = 0.0f;
 boolean primera_etapa = false;
 
 // se define una simulacion de un puerto pwm de 50 hz
-void duty_50(int puerto, int16 time_on, int ciclos){
-    for (i = 0; i < ciclos; i++) {
-        output_high(puerto);
-        delay_us(time_on);
-        output_low(puerto);
-        delay_us(20000 - time_on);
-    }
+void duty_50(){
+
 }
 
 void define_puertos() {
-       
+
     /* Define el pin 7 y 0 como entrada y el resto del puerto como salidas
     3 y 4 leds indicadores de caja
     0  entrada finales de carrera
     2 banda 1
     bin: 1110 0001
     */
-       
+    
     set_tris_b(0xE1);
     output_low(PIN_B1);
-       
+
     // define la entrada 0 del puerto a como entrada
     //bin: 0000 0001
     set_tris_a(0x01);
     output_high(PIN_A5);
     output_low(PIN_A3);
-       
+
     // se define el puerto c como salida
     set_tris_c(0x00);
     output_c(0x00);
-       
+
     // Define como entradas analoga el puerto AN0
     SETUP_ADC_PORTS(AN0);
-       
+
     // Define el relog interno para el uso del ADC
     SETUP_ADC(ADC_CLOCK_INTERNAL);
-    
-    // se configura el canal del adc
-    SET_ADC_CHANNEL(0);
 }
-
-void correr_bandas_finales(){
-    // corre las 3 bandas del rele por 3.5 seg
-    output_low(PIN_A5);
-    delay_ms(3500);
-    output_high(PIN_A5);
-}
-
 void parar_planta(){
-    // se enciende el led indicador de paro
-    output_high(PIN_B1);
-    
-    // se detiene la banda 1
-    output_low(PIN_B2);
-    // se detiene las bandas finales
-    output_high(PIN_A5);
-    
-    // se mantiene en el bucle hasta que se presione el boton de start
-    while(!input(PIN_B5)){
-        delay_ms(100);
-    }
-    
-    if(primera_etapa){
-        // se reanuda la primera banda
-        output_high(PIN_B2);
-    }else{
-        // se encomprueba los finales de carrera del elevador
-        if(input(PIN_B0)){
-            // esta en las bandas finles, activamos el rele de las badas
-            correr_bandas_finales();
-        }
-    }
-    
-    // apagado del led indicador de paro
-    output_low(PIN_B1);
+       output_high(PIN_B1);
+
+       // *************  detiene lo que esta funcionando 
+      // if(primera_etapa){
+          // se detiene la banda 1
+           output_low(PIN_B2);
+      // }else{
+          // se detiene las bandas finales
+          output_high(PIN_A5);
+     //  }
+
+      while(!input(PIN_B5)){
+         delay_ms(100);
+      }
+
+         if(primera_etapa){
+          // se reanuda la primera banda
+           output_high(PIN_B2);
+       }else{
+          // se reanuda las bandas finales
+              if(input(PIN_B0)){
+                 // esta en las bandas
+            output_low(PIN_A5);
+            delay_ms(3500);
+            output_high(PIN_A5);
+              }
+       }
+
+         output_low(PIN_B1);
 }
 
 // ************************* interupciones ************************
-
 // iterupcion de cambio en el puerto b
 #int_rb
 void int_rb_pulsadores(){
-    //boton de rest b7
-    if(input(PIN_B7)){
-        printf("7.0000");
-    }
-    // stop b6
-    if(input(PIN_B6)){
-        parar_planta();
-    }
+   //boton de rest
+   if(input(PIN_B7)){
+      printf("7.0000");
+   }
+   // stop 6
+   if(input(PIN_B6)){
+         parar_planta();
+   }
 }
 
 //interrupcion de llegada de datos
 #int_rda
 void rb_isr() {
-    // comprueba si hay llegada de datos
     if (kbhit()) {
         dato_recibido = getc();
         delay_ms(4);
-        
         if(dato_recibido == '1'){
-            parar_planta();
+           parar_planta();
         }
-        
         dato_recibido = '0';
     }
 }
 
-// retorna un valor de 0 a 5 con respecto al valor medido en el pin A0
 float leerADC() {
-    return resolucion * (float) (READ_ADC());
+    return resolucion * (float)(READ_ADC());
 }
 
 void subir_ascensor() {
-    //ENABLE RA3,  datos: A1, A2
+    //subir ascensor
     output_high(PIN_A1);
     output_low(PIN_A2);
-    
+
     //inicio de la subida con fuerza
     for (i = 0; i < 40; i++) {
         output_high(PIN_A3);
@@ -167,15 +149,15 @@ void subir_ascensor() {
         output_low(PIN_A3);
         delay_ms(11);
     }
-    
+
     if (promedio >= 3.5) {
         //cajas pesadas
         while (!input(PIN_B0)) {
-                output_high(PIN_A3);
-                delay_ms(8);
-                output_low(PIN_A3);
-                delay_ms(12);
-            }
+            output_high(PIN_A3);
+            delay_ms(8);
+            output_low(PIN_A3);
+            delay_ms(12);
+        }
     } else {
         //cajas livianas
         while (!input(PIN_B0)) {
@@ -188,25 +170,25 @@ void subir_ascensor() {
 }
 
 void bajar_ascensor() {
-    //ENABLE RA3,  datos: A1, A2
-    
+
+    // bajar ascensor
     output_low(PIN_A1);
     output_high(PIN_A2);
-    
+
     for (i = 0; i < 40; i++) {
         output_high(PIN_A3);
         delay_ms(12);
         output_low(PIN_A3);
         delay_ms(8);
     }
-    
+
     for (i = 0; i < 80; i++) {
         output_high(PIN_A3);
         delay_ms(5);
         output_low(PIN_A3);
         delay_ms(15);
     }
-    
+
     while (!input(PIN_B0)) {
         output_high(PIN_A3);
         delay_ms(3);
@@ -216,31 +198,36 @@ void bajar_ascensor() {
 }
 
 void main() {
-    
     //habilita las interrupciones por serial
     enable_interrupts(int_rda);
     //habilita las interrupciones puerto b
     enable_interrupts(int_rb);
-    //habilita las interrupciones glovales
+    
+    
     enable_interrupts(global);
     
-    //intrerrupcion por flanco de subida
+    //flanco de subida
     ext_int_edge(L_TO_H);
     
     // configura los puertos
     define_puertos();
-    
-    
+
+    // se configura el canal del adc
+    SET_ADC_CHANNEL(0);
+
     while (true) {
-        primera_etapa = true;
-        
-        // se apagan los led indicadores de caja
-        output_low(PIN_B3);
-        output_low(PIN_B4);
-        
+
+       primera_etapa = true;
+
         // inicia la banda 1
         output_high(PIN_B2);
-    
+        
+             
+       
+       // se apagan los led indicadores de caja
+        output_low(PIN_B3);
+        output_low(PIN_B4);
+
         // esta en este metodo hasta que pese algo
         while (true) {
             delay_ms(200);
@@ -248,24 +235,25 @@ void main() {
                 break;
             }
         }
-    
+
         // se detiene la banda 1
         output_low(PIN_B2);
-    
+
         // espera 3s mientras cuadra la caja
         delay_ms(3000);
-    
-        // ******************* peso de la caja ************   
+
+        // ******************* peso de la caja
+
         for (i = 0; i < 7; i++) {
             delay_ms(300);
             promedio += leerADC();
         }
         promedio /= 7;
- 
+
+
         // se envia el peso por r232
         printf("%1.4f", promedio);
-       
-    
+
         // enciende los led indicadores 
         if (promedio >= 3.5) {
             output_high(PIN_B3);
@@ -273,33 +261,87 @@ void main() {
             output_high(PIN_B4);
         }
         
-        delay_ms(500);
-        
+
         //**************** servo 1 (pasa a la otra banda) ***************
-        // brazo 90 grados
-        duty_50(PIN_C2, 1500, 15);
-        duty_50(PIN_C2, 500, 15);
-
-        // ************** Finaliza la primera etapa  *******************
-        primera_etapa = false;
-
-        correr_bandas_finales();
-   
-        subir_ascensor();
         delay_ms(500);
-    
+
+        // brazo 90 grados
+        for (i = 0; i < 15; i++) {
+            output_high(PIN_C2);
+            delay_us(1500);
+            output_low(PIN_C2);
+            delay_us(18500);
+        }
+
+        for (i = 0; i < 15; i++) {
+            output_high(PIN_C2);
+            delay_us(500);
+            output_low(PIN_C2);
+            delay_us(19500);
+        }
+        // ***************  fin del servo 1 *****************++
+
+        // cambia los estados de las etapas
+        primera_etapa = false;
+        segunda_etapa = true;
+
+
+        // corre las 3 bandas del rele
+        output_low(PIN_A5);
+        delay_ms(3500);
+        output_high(PIN_A5);
+
+        /*
+        ENABLE RA3
+        datos:
+              A1
+              A2
+        */
+        subir_ascensor();
+
+        delay_ms(500);
+
         // condicional para pesar las cajas 
         if (promedio >= 3.5) {
             // bazo cajas pesadas
-            duty_50(PIN_C1, 500, 60);
-            duty_50(PIN_C1, 2500, 60);
+            for (i = 0; i < 60; i++) {
+                output_high(PIN_C1);
+                delay_us(500);
+                output_low(PIN_C1);
+                delay_us(19500);
+            }
+
+            for (i = 0; i < 60; i++) {
+                output_high(PIN_C1);
+                delay_us(2500);
+                output_low(PIN_C1);
+                delay_us(17500);
+            }
+
         } else {
             // bazo cajas livianas
-            duty_50(PIN_C0, 500, 60);
-            duty_50(PIN_C0, 2500, 60);
+            for (i = 0; i < 60; i++) {
+                output_high(PIN_C0);
+                delay_us(500);
+                output_low(PIN_C0);
+                delay_us(19500);
+            }
+
+            for (i = 0; i < 60; i++) {
+                output_high(PIN_C0);
+                delay_us(2500);
+                output_low(PIN_C0);
+                delay_us(17500);
+            }
         }
-    
-        correr_bandas_finales();
+
+        // corre las 3 bandas del rele
+        output_low(PIN_A5);
+        delay_ms(3500);
+        output_high(PIN_A5);
+
         bajar_ascensor();
+
+        segunda_etapa = false;
     }
 }

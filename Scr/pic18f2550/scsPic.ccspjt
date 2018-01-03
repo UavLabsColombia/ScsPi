@@ -21,7 +21,7 @@ allwarnings=1
 stayupne=3
 stayupoe=0
 [PROJECT]
-Target=main2.hex
+Target=scsPic.hex
 Development_Mode=
 Processor_Text=PIC18F2550
 ToolSuite=CCS
@@ -32,8 +32,8 @@ BuildTool=C-COMPILER
 OptionString=+FH
 AdditionalOptionString=
 BuildRequired=1
-FileList=main2.c
-[main2.c]
+FileList=scsPic.c
+[scsPic.c]
 Type=4
 Path=
 FileList=
@@ -41,15 +41,14 @@ BuildTool=
 OptionString=
 AdditionalOptionString=
 [mru-list]
-1=main2.c
+1=scsPic.c
 [Windows]
 0=0000 %S 0 0 796 451 3 0
 [CompilerVersion]
 Fixed=
 [Opened Files]
-1=main2.c
-2=..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\servos.c
-3=
+1=scsPic.c
+2=
 [Units]
 Count=1
-1=main2 (main)
+1=scsPic (main)

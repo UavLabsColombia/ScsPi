@@ -28,22 +28,30 @@
 01D     i
 01E-021 promedio
 022.0   primera_etapa
-022.1   segunda_etapa
-023-024 @ITOF.P1
-023-026 @DIVFF.P2
+023-026 @DIVFF.P1
+023-024 @ITOF.P2
 023-026 @PRINTF_L32D_9600_31766_31767FPFPF.P3
+023     duty_50.puerto
 023     MAIN.@SCRATCH1
-024     @delay_us1.P1
+024-025 duty_50.time_on
 024     MAIN.@SCRATCH2
 025-028 @ADDFF.P1
 025     MAIN.@SCRATCH3
+026     duty_50.ciclos
 026     MAIN.@SCRATCH4
 027     @PRINTF_L32D_9600_31766_31767FPFPF.P1
 027-02A @DIVFF.P2
 027-02A @FLT.P3
+027     @WRITEBITA.P4
+027     duty_50.@SCRATCH1
+028     @WRITEBITA.P1
+028     duty_50.@SCRATCH2
 028     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH1
-029-02C @ADDFF.P1
+029-02A @WRITEBITA.P1
+029-02C @ADDFF.P2
+029     duty_50.@SCRATCH3
 029     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH2
+02A     @delay_us1.P1
 02A     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH3
 02B-02E @FLT.P1
 02B     @DIVFF.@SCRATCH1
@@ -60,17 +68,17 @@
 02F     @ADDFF.@SCRATCH3
 02F     @DIVFF.@SCRATCH5
 02F     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH8
-030-033 @MULFF.P1
+030-033 @DIV3232.P1
 030-033 @FTOSD.P2
-030-033 @DIV3232.P3
+030-033 @MULFF.P3
 030     @FLT.@SCRATCH2
 030     @ADDFF.@SCRATCH4
 030     @DIVFF.@SCRATCH6
 031     @ADDFF.@SCRATCH5
 032     @ADDFF.@SCRATCH6
 033     @ADDFF.@SCRATCH7
-034-037 @MULFF.P1
-034-037 @DIV3232.P2
+034-037 @DIV3232.P1
+034-037 @MULFF.P2
 034     @ADDFF.@SCRATCH8
 034     @FTOSD.@SCRATCH1
 038     @MULFF.@SCRATCH1
@@ -81,7 +89,7 @@
 03A     @DIV3232.@SCRATCH3
 03B     @DIV3232.@SCRATCH4
 03C     @DIV3232.@SCRATCH5
-03D     parar_planta.@SCRATCH1
+03D     correr_bandas_finales.@SCRATCH1
 03D     @PSTRINGC_9600_31766_31767.@SCRATCH1
 03E     @delay_ms1.P1
 03E     @PSTRINGC_9600_31766_31767.@SCRATCH2
@@ -90,54 +98,57 @@ FB4.7   C2OUT
 FBB     CCP_2
 FBB     CCP_2_LOW
 FBC     CCP_2_HIGH
-FBE     CCP_1_LOW
 FBE     CCP_1
+FBE     CCP_1_LOW
 FBF     CCP_1_HIGH
 FE1-FE2 @READ_PACKED_MEMORY.P1
 FE1-FE2 @WRITE_PACKED_MEMORY.P2
-FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
 FE9-FEA @READ_PROGRAM_MEMORY.P2
 FE9-FEA @WRITE_PACKED_MEMORY.P3
-FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FE9-FEA @READ_PACKED_MEMORY.P4
 FF6-FF8 @READ_PROGRAM_MEMORY.P1
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
 0000A2  @PSTRINGC_9600_31766_31767
 0000C6  @delay_ms1
-0000EC  parar_planta
-000120  int_rb_pulsadores
-00013A  @const648.call
-000142  @GETCH_BIU_1
-00015A  rb_isr
-00017C  define_puertos
-0001A8  @ITOF
-0001E0  @MULFF
-0002D2  leerADC
-00030A  @FLT
-000380  @ADDFF
-0005EC  @DIVFF
-000748  @FTOSD
-000788  @DIV3232
-000816  @PRINTF_L32D_9600_31766_31767FPFPF
-000998  @delay_us1
-0009B6  subir_ascensor
-000A7E  bajar_ascensor
-000B28  MAIN
-000B28  @cinit1
-000B70  @cinit2
+0000EC  correr_bandas_finales
+000100  parar_planta
+000124  int_rb_pulsadores
+00013E  @const656.call
+000146  @GETCH_BIU_1
+00015E  rb_isr
+000180  define_puertos
+0001B8  @ITOF
+0001F0  @MULFF
+0002E2  leerADC
+00031A  @FLT
+000390  @ADDFF
+0005FC  @DIVFF
+000758  @FTOSD
+000798  @DIV3232
+000826  @PRINTF_L32D_9600_31766_31767FPFPF
+0009A8  @WRITEBITA
+0009E6  @delay_us1
+000A04  duty_50
+000A72  subir_ascensor
+000B3A  bajar_ascensor
+000BE4  @cinit1
+000BE4  MAIN
+000C2A  @cinit2
 
 Project Directory:
-    C:\Users\Andres\Documents\GitHub\ScsPi\Scr\pic18f2550new\
+    C:\Users\Andres\Documents\GitHub\ScsPi\Scr\pic18f2550\
 
 Project Files:
-    main2.c                                                 [20-dic.-17 17:15  CRC=45CE1FF1]
+    scsPic.c                                                [03-ene.-18 10:56  CRC=0A79239C]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F2550.h [12-nov.-13 15:35  CRC=13DBFC6E]
 
-Source signature=6D8618CD
+Source signature=32311C78
 
 Units:
-    main2 (main)
+    scsPic (main)
 
 Compiler Settings:
     Processor:      PIC18F2550
@@ -148,13 +159,13 @@ Compiler Settings:
     Float,Double:   32,32
 
 Output Files:
-    XREF file:   main2.xsym
-    Errors:      main2.err
-    Ext Symbols: main2.esym
-    INHX32:      main2.hex
-    Symbols:     main2.sym
-    List:        main2.lst
-    Debug/COFF:  main2.cof
-    Project:     main2.ccspjt
-    Call Tree:   main2.tre
-    Statistics:  main2.STA
+    XREF file:   scsPic.xsym
+    Errors:      scsPic.err
+    Ext Symbols: scsPic.esym
+    INHX32:      scsPic.hex
+    Symbols:     scsPic.sym
+    List:        scsPic.lst
+    Debug/COFF:  scsPic.cof
+    Project:     scsPic.ccspjt
+    Call Tree:   scsPic.tre
+    Statistics:  scsPic.STA

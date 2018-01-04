@@ -1,6 +1,10 @@
 
 /*
 Conexion de modulo Wi-Fi ESP8266 Con servidor Mosquitto bajo el  protocolo MQTT (M2M)
+Creado por: Heberth Alexander Ardila  / heberthardila@gmail.com
+UAVLabs.org
+Licencia: GNU General Public License v3.0
+
 
 Este codigo, es una modificacion al ejemplo de conexion con el servidor MQTT  de arduino 
 el cual utiliza la librerias ESP8266Wifi y PubSubclient, fue modificado y adaptado para el control de nuestro proceso, se conecta a un servidor de MQTT el cual se encuentra en

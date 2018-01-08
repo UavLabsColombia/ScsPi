@@ -1,5 +1,7 @@
 "SCSPi" Sistema de Control Escalable Basado en Raspberry Pi
 
+Documentacion:
+http://uavlabs.org/2018/01/04/scspi-sistema-de-control-escalable-basado-en-raspberry-pi/
 
 Al diseñar un sistema de control automático, nuestra mayor satisfacción es el saber que funciona de manera adecuada y sin percances sobre su ejecución, a raíz de mejorar la estabilidad en los funcionamientos de los sistemas de control automático, nace la necesidad de un constante monitoreo del sistema, este monitoreo consiste en darse cuenta si el proceso se está ejecutando de manera correcta, ya sea confirmando el estado del sistema personalmente o analizando su estatus por medio de un panel que permita su control ante algún evento, por esto vemos la necesidad de implementar un SCS “Scalable Control System o Sistema de Control Escalable” que permite amoldarse a cualquier entorno de control automático en producción y analizar en RT su funcionamiento. 
 
@@ -17,6 +19,7 @@ Objetivos Generales.
 * Publicar el SCS en la nube monitoreando el sistema. 
 
 Planta o Sistema a controlar: Elevador clasificador para paquetes
+
 
 El proceso se inicia con el transporte de uno de los paquetes a la báscula; una vez clasificado el paquete en la báscula, se encenderá una luz indicadora del tipo de paquete (luz 1 será paquete grande y luz 2 será paquete pequeño). A continuación, el paquete es transportado por la cinta 1 hasta el plano elevador. El cilindro C eleva los paquetes. Acto seguido los paquetes son clasificados; los paquetes pequeños son colocados en la cinta 2 por el cilindro A, y los paquetes grandes son colocados en la cinta 3 por el cilindro B. el cilindro elevador C se recupera sólo cuando los cilindros A y B llegan a la posición final. El sistema contará con botones locales de stop, start y reinicio; los cuales también aparecerán en la HMI, en donde se mostrará las fases del proceso y llevará la cuenta de los paquetes grandes y pequeños.
 

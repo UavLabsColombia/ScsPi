@@ -1,0 +1,237 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     rs232_errors
+018-01B resolucion
+01C     dato_recibido
+01D     i
+01E-021 promedio
+022.0   primera_etapa
+023     cajasLivianas
+024     cajasPesadas
+025     duty_50.puerto
+025-026 @ITOF.P1
+025     lcd_init.i
+025-028 @DIVFF.P1
+025-028 @PRINTF_L32D_9600_31766_31767FPFPF.P2
+025     MAIN.@SCRATCH1
+026     @PSTRINGCN_674.P1
+026-027 duty_50.time_on
+026     @PRINTF_D_674.P1
+026     lcd_init.@SCRATCH1
+026     MAIN.@SCRATCH2
+027-02A @ADDFF.P1
+027     @PRINTF_D_674.P2
+027     MAIN.@SCRATCH3
+027     @PSTRINGCN_674.@SCRATCH1
+028     duty_50.ciclos
+028     MAIN.@SCRATCH4
+028     @PSTRINGCN_674.@SCRATCH2
+028     @PRINTF_D_674.@SCRATCH1
+029     @WRITEBITA.P1
+029-02C @FLT.P2
+029-02C @DIVFF.P3
+029     @PRINTF_L32D_9600_31766_31767FPFPF.P4
+029     duty_50.@SCRATCH1
+029     @PRINTF_D_674.@SCRATCH2
+02A     @WRITEBITA.P1
+02A     duty_50.@SCRATCH2
+02A     @PRINTF_D_674.@SCRATCH3
+02A     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH1
+02B-02E @ADDFF.P1
+02B-02C @WRITEBITA.P2
+02B     duty_50.@SCRATCH3
+02B     @PRINTF_D_674.@SCRATCH4
+02B     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH2
+02C     @DIV88.P1
+02C     @delay_us1.P2
+02C     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH3
+02D     @DIV88.P1
+02D-030 @FLT.P2
+02D     @DIVFF.@SCRATCH1
+02D     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH4
+02E     @DIV88.@SCRATCH1
+02E     @DIVFF.@SCRATCH2
+02E     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH5
+02F     @ADDFF.@SCRATCH1
+02F     @DIVFF.@SCRATCH3
+02F     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH6
+030     @ADDFF.@SCRATCH2
+030     @DIVFF.@SCRATCH4
+030     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH7
+031     @FLT.@SCRATCH1
+031     @ADDFF.@SCRATCH3
+031     @DIVFF.@SCRATCH5
+031     @PRINTF_L32D_9600_31766_31767FPFPF.@SCRATCH8
+032-035 @MULFF.P1
+032-035 @FTOSD.P2
+032-035 @DIV3232.P3
+032     @FLT.@SCRATCH2
+032     @ADDFF.@SCRATCH4
+032     @DIVFF.@SCRATCH6
+033     @ADDFF.@SCRATCH5
+034     @ADDFF.@SCRATCH6
+035     @ADDFF.@SCRATCH7
+036-039 @DIV3232.P1
+036-039 @MULFF.P2
+036     @ADDFF.@SCRATCH8
+036     @FTOSD.@SCRATCH1
+03A     @MULFF.@SCRATCH1
+03A     @DIV3232.@SCRATCH1
+03B     @MULFF.@SCRATCH2
+03B     @DIV3232.@SCRATCH2
+03C     @MULFF.@SCRATCH3
+03C     @DIV3232.@SCRATCH3
+03D     @DIV3232.@SCRATCH4
+03E     @DIV3232.@SCRATCH5
+03F     correr_bandas_finales.@SCRATCH1
+03F     @PSTRINGC_674.@SCRATCH1
+03F     @PSTRINGC_9600_31766_31767.@SCRATCH1
+040     @PSTRINGC_674.@SCRATCH2
+040     @PSTRINGC_9600_31766_31767.@SCRATCH2
+041     lcd_putc.c
+042     @delay_ms1.P1
+042     lcd_gotoxy.x
+043     lcd_gotoxy.y
+044     lcd_gotoxy.address
+045     lcd_gotoxy.@SCRATCH1
+046     lcd_send_byte.address
+047     lcd_send_byte.n
+048     lcd_read_byte.low
+048     lcd_send_byte.@SCRATCH1
+049     lcd_send_nibble.n
+049     lcd_read_byte.high
+04A     lcd_read_byte.@SCRATCH1
+F83     lcd
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0000A2  LCD_INIT_STRING.call
+0000BC  LCD_INIT_STRING.data
+0000C0  @const704.call
+0000C2  @const706.call
+0000C8  lcd_read_byte
+0000FE  lcd_send_nibble
+000118  lcd_send_byte
+00014E  @delay_ms1
+000174  lcd_gotoxy
+000196  lcd_putc
+0001D8  @PSTRINGC_674
+0001F8  @PSTRINGC_9600_31766_31767
+00021C  correr_bandas_finales
+000230  parar_planta
+000268  int_rb_pulsadores
+0002AE  @const708.call
+0002B0  @const709.call
+0002B6  @const710.call
+0002BE  @const712.call
+0002C0  @const713.call
+0002C6  @GETCH_BIU_1
+0002DE  rb_isr
+000300  @const729.call
+000302  @const730.call
+00030E  @const731.call
+000310  @const732.call
+00031C  @const741.call
+00031E  @const742.call
+00032C  @const743.call
+00032E  @const744.call
+000338  @const745.call
+00033A  @const746.call
+000342  @const747.call
+000344  @const748.call
+000350  @const764.call
+000352  @const765.call
+00035E  @const766.call
+00036C  lcd_init
+000400  define_puertos
+00043C  @PSTRINGCN_674
+000466  @DIV88
+00048E  @PRINTF_D_674
+000568  @ITOF
+0005A0  @MULFF
+000692  leerADC
+0006CA  @FLT
+000740  @ADDFF
+0009AC  @DIVFF
+000B08  @FTOSD
+000B48  @DIV3232
+000BD6  @PRINTF_L32D_9600_31766_31767FPFPF
+000D58  @WRITEBITA
+000D96  @delay_us1
+000DB4  duty_50
+000E22  subir_ascensor
+000EEE  bajar_ascensor
+000F98  MAIN
+000F98  @cinit1
+000FE2  @cinit2
+
+Project Directory:
+    C:\Users\Andres\Desktop\scspic\
+
+Project Files:
+    scsPic.c                                                [16-jun.-18 20:20  CRC=FA5F30E0]
+    ..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.h  [12-nov.-13 14:35  CRC=5337E248]
+    Mi_LCD.c                                                [26-abr.-15 10:39  CRC=B8497263]
+
+Source signature=BE29F7EE
+
+Units:
+    scsPic (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   scsPic.xsym
+    Errors:      scsPic.err
+    Ext Symbols: scsPic.esym
+    INHX32:      scsPic.hex
+    Symbols:     scsPic.sym
+    List:        scsPic.lst
+    Debug/COFF:  scsPic.cof
+    Project:     scsPic.ccspjt
+    Call Tree:   scsPic.tre
+    Statistics:  scsPic.STA

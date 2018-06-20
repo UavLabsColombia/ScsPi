@@ -1,0 +1,9 @@
+>>> Warning 216 "scsPic.c" Line 352(1,2): Interrupts disabled during call to prevent re-entrancy:  (@delay_ms1)
+>>> Warning 216 "scsPic.c" Line 352(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_nibble)
+>>> Warning 216 "scsPic.c" Line 352(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_send_byte)
+>>> Warning 216 "scsPic.c" Line 352(1,2): Interrupts disabled during call to prevent re-entrancy:  (lcd_putc)
+>>> Warning 216 "scsPic.c" Line 352(1,2): Interrupts disabled during call to prevent re-entrancy:  (@PSTRINGC_674)
+>>> Warning 216 "scsPic.c" Line 352(1,2): Interrupts disabled during call to prevent re-entrancy:  (correr_bandas_finales)
+      Memory usage:   ROM=16%      RAM=2% - 4%
+      0 Errors,  6 Warnings.
+Build Successful.
